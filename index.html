@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Fee!</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ede9fe, #c4b5fd);
+      font-family: 'Georgia', serif;
+      color: #2e1065;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    header {
+      background: linear-gradient(to right, #7c3aed, #a78bfa);
+      padding: 50px 20px;
+      color: white;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .section {
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .btn {
+      background-color: #6d28d9;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 2px 2px 10px rgba(124, 58, 237, 0.4);
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #4c1d95;
+    }
+    .hidden { display: none; }
+
+    .slideshow {
+      position: relative;
+      max-width: 600px;
+      margin: 30px auto;
+    }
+    .slideshow img {
+      width: 100%;
+      border-radius: 12px;
+      display: none;
+    }
+    .slideshow img.active {
+      display: block;
+    }
+    #catMeme img {
+      border-radius: 12px;
+    }
+    #secretMessage, #sexyMessage {
+      background: #f3e8ff;
+      padding: 15px;
+      margin-top: 20px;
+      border-left: 5px solid #7c3aed;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 Music -->
+  <audio id="bg-music" loop>
+    <source src="https://pagalsong.in/uploads/systemuploads/mp3/Khoobsurat/Jaana%20Tere%20Sawalon%20Ka%20-%20Khoobsurat%20128%20Kbps.mp3" type="audio/mp3">
+  </audio>
+  <button class="btn" onclick="toggleMusic()">🎶 Play / Pause Music</button>
+
+  <!-- 🐱 Cat Sound -->
+  <audio id="cat-sound">
+    <source src="https://www.soundjay.com/animal/cat-meow-1.mp3" type="audio/mp3">
+  </audio>
+
+  <header>
+    <h1>Happy Birthday, Fee! 🎂</h1>
+    <p><strong>“Challenge Accepted.”</strong></p>
+  </header>
+
+  <section class="section">
+    <p>
+      I see you and you see codes..<br>
+      You keep typing while I munch on toasts..<br>
+      I go to sleep while you stay up... all engrossed, to crack a bug..<br>
+      And when I am up.. you go to sleep...<br>
+      It's been long, we hardly meet..<br>
+      But that's okay.. it's just 2 months,<br>
+      And I'm sure, when you'll be done..<br>
+      The smile on your face won't go away..<br>
+      And then we will hit a buffet..<br>
+      Your face will shine, your body will heal..<br>
+      And it'll be the best, I ever feel.
+    </p>
+  </section>
+
+  <section class="section slideshow">
+    <h2>📸 Moments Together</h2>
+    <img src="https://via.placeholder.com/600x400?text=Us+1" class="active" />
+    <img src="https://via.placeholder.com/600x400?text=Us+2" />
+    <img src="https://via.placeholder.com/600x400?text=Us+3" />
+  </section>
+
+  <section class="section">
+    <h2>📖 Your Poetry Corner</h2>
+    <button class="btn" onclick="nextPoem()">Next Poem</button>
+    <p id="poetry">
+      "In code I trust,<br>
+      But poems are just,<br>
+      Another way I feel<br>
+      What logic can't reveal."
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>🧠 Birthday Quiz</h2>
+    <div>
+      <p><strong>1. Fee encounters a bug. What does he say?</strong></p>
+      <button class="btn" onclick="checkAnswer(this, true)">“Challenge Accepted.”</button>
+      <button class="btn" onclick="checkAnswer(this, false)">“Nope, I’m out.”</button>
+    </div>
+    <div>
+      <p><strong>2. Fee sees a cat meme. What does he do?</strong></p>
+      <button class="btn" onclick="checkAnswer(this, true)">Save & send it</button>
+      <button class="btn" onclick="checkAnswer(this, false)">Ignore it</button>
+    </div>
+    <div>
+      <p><strong>3. What's Senua's story mostly about?</strong></p>
+      <button class="btn" onclick="checkAnswer(this, true)">Grief, mental health, and mythology</button>
+      <button class="btn" onclick="checkAnswer(this, false)">Alien invasion</button>
+    </div>
+    <div>
+      <p><strong>4. What’s our next game?</strong></p>
+      <button class="btn" onclick="revealSecret()">It Takes Two</button>
+      <button class="btn" onclick="checkAnswer(this, false)">Pong</button>
+    </div>
+    <div>
+      <p><strong>5. When do you look the sexiest?</strong></p>
+      <button class="btn" onclick="revealSexy()">When you're lost in your work</button>
+    </div>
+    <div id="secretMessage">Every time you solve a bug, my heart feels full and I can't be more proud of you. Well played! I too can’t wait to play *It Takes Two* with you!! 💜</div>
+    <div id="sexyMessage">I love it when you get lost in your work... you look the sexiest that way!!!</div>
+  </section>
+
+  <section class="section">
+    <h2>😺 Serious Question</h2>
+    <button class="btn" onclick="adoptCat()">Adopt a cat with me?</button>
+    <div id="catMeme" class="hidden">
+      <p>Here's your future roommate 🐾</p>
+      <img src="https://i.imgur.com/dtNehhE.jpeg" width="300" />
+    </div>
+  </section>
+
+  <footer class="section">
+    <p>Forever yours,<br>Your favorite human 💜</p>
+  </footer>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    function toggleMusic() {
+      if (music.paused) music.play();
+      else music.pause();
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slideshow img");
+    setInterval(() => {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }, 4000);
+
+    const poems = [
+      `"In code I trust,<br>But poems are just,<br>Another way I feel<br>What logic can't reveal."`,
+      `"Lines of logic, lines of rhyme,<br>You write both, and make them shine."`,
+      `"Bug or sonnet, both you fix,<br>With wisdom, wit, and little tricks."`
+    ];
+    let currentPoem = 0;
+    function nextPoem() {
+      currentPoem = (currentPoem + 1) % poems.length;
+      document.getElementById("poetry").innerHTML = poems[currentPoem];
+    }
+
+    function checkAnswer(btn, isCorrect) {
+      btn.disabled = true;
+      btn.style.backgroundColor = isCorrect ? "#16a34a" : "#dc2626";
+      btn.innerText += isCorrect ? " ✅" : " ❌";
+    }
+
+    function revealSecret() {
+      checkAnswer(event.target, true);
+      document.getElementById("secretMessage").style.display = "block";
+    }
+
+    function revealSexy() {
+      checkAnswer(event.target, true);
+      document.getElementById("sexyMessage").style.display = "block";
+    }
+
+    function adoptCat() {
+      document.getElementById("catMeme").classList.remove("hidden");
+      document.getElementById("cat-sound").play();
+    }
+  </script>
+
+</body>
+</html>
